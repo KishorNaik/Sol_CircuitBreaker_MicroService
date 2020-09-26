@@ -1,0 +1,35 @@
+﻿Step 1:
+Make a Product Model Class in Models folder. Check Model Class.
+
+Step 2:
+Download following package from nuget server.
+Polly
+
+Step 3:
+Create a DemoApi1 Service class in Services folder. Check ApiDemo1Service.
+
+Step 4:
+Create a CircuitBreaker folder, add the circuit breaker class, Check ApiDemo1CircuitBreaker.cs
+
+Step 4:
+Create a Configuration Folder. Create a CircuitBreakerServiceExtension class. 
+
+Step 5:
+Go to StartUp.cs file.
+
+Add the following code in ConfigureServices method.
+
+ public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+
+            services.AddCircuitBreaker(maxFailures: 2, TimeSpan.FromSeconds(30));
+
+            services.AddHttpClient<IApiDemo1Service, ApiDemo1Service>((config) =>
+             {
+                 config.BaseAddress = new Uri("http://localhost:51446");
+             });
+
+            services.AddSingleton<ApiDemo1CircuitBreaker>();
+        }
+
