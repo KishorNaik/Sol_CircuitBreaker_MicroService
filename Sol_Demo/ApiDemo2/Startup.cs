@@ -36,8 +36,6 @@ namespace ApiDemo2
              {
                  config.BaseAddress = new Uri("http://localhost:51446");
              });
-
-            services.AddSingleton<ApiDemo1CircuitBreaker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

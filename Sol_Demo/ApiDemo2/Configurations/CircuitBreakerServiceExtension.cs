@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ApiDemo2.CircuitBreakers;
+using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.CircuitBreaker;
 using System;
@@ -27,6 +28,8 @@ namespace ApiDemo2.Configurations
 
                 return circuitBreakerPolicy;
             });
+
+            services.AddSingleton<ApiDemo1CircuitBreaker>();
         }
     }
 }
